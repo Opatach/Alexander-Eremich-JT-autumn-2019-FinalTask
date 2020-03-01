@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HORSE RACES</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/main.js" defer></script>
+
+</head>
+<body class="customer-body">
+    <header>
+        <div class="container">
+            <h1>Horse races</h1>
+            <div class="profile">
+                <div class="login">
+                    <a href="#" class="login-button"><i class="icon-login"></i>Sign in</a>
+                </div>
+                <div class="user-profile hide">
+                    <div class="user-profile-options">
+                        <div>
+                            <ul>
+                                <li><i class="icon-user"></i>
+                                    <span id="profileUsername">User</span></li>
+                                <li><p>Balance: $<span id="userBalance">0</span></p></li>
+                            </ul>
+                        </div>
+                        
+                        <ul class="profile-options-menu">
+                            <li><a href="#" id="makeABetProfileOption">Make a bet</a></li>
+                            <li><a href="#" id="showRacesProfileOption">Show races</a></li>
+                            <li><a href="#" id="addMoneyProfileOption">Add money</a></li>
+                            <li><a href="#" id="logOutProfileOption">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="forms">
+            <form id="signInForm" class="hide" method="POST" action="" >
+                <div class="user-data">
+                    <h2>Signing in</h2>
+                    <label for="">
+                        <span>Email</span>
+                        <input type="email" name="userEmail" id="signInUserEmail" autocomplete="off" required>
+                    </label>
+                    <label for="">
+                        <span>Who are you?</span>
+                        <div class="user-type">
+                            <label class="user-type-item">
+                                <input type="radio" name="userType" maxlength="30" autocomplete="off" value="CUSTOMER" checked required>
+                                <span>Customer</span>
+                            </label>
+                            <label class="user-type-item">
+                                <input type="radio" name="userType" maxlength="30" autocomplete="off" value="BOOKMAKER" required>
+                                <span>Bookmaker</span>
+                            </label>
+                            <label class="user-type-item">
+                                <input type="radio" name="userType" maxlength="30" autocomplete="off" value="ADMIN" required>
+                                <span>Admin</span>
+                            </label>
+                        </div>
+                    </label>
+                    <label for="">
+                        <span>Password</span>
+                        <input type="password" name="password" id="signInUserPassword" autocomplete="off" required>
+                    </label>
+                </div>
+                <button id="signInButton">Sign in</button>
+                
+                <span class="change-form">Don't have an account?
+                    <a href="#" id="useSignUpForm">Sign up</a></span>
+                <a href="#" id="closeSignInForm" class="close-form-button"></a>
+            </form>
+            <form id="signUpForm" class="hide" method="POST" action="">
+                <div class="user-data">
+                    <h2>Registration</h2>
+                    <label for="">
+                        <span>Username</span>
+                        <input type="text" name="userName" maxlength="30" id="signUpUserName" autocomplete="off" required>
+                        <p class="error-msg hidden-msg" id="incorrectSignUpLoginMsg">Login must contain letters of the Latin and Russian alphabet only. Allowed login length: 4 to 20 characters. Login must not begin with a number.</p>
+                    </label>
+                    <label for="">
+                        <span>Email</span>
+                        <input type="email" name="userEmail" id="signUpUserEmail" autocomplete="off" required>
+                        <p class="error-msg hidden-msg" id="incorrectSignUpEmailMsg">Invalid email. Valid Type: example@mail.com</p>
+                    </label>
+                    <label for="">
+                        <span>Who are you?</span>
+                        <div class="user-type">
+                            <label class="user-type-item">
+                                <input type="radio" name="userType" maxlength="30" autocomplete="off" value="CUSTOMER" checked required>
+                                <span>Customer</span>
+                            </label>
+                            <label class="user-type-item">
+                                <input type="radio" name="userType" maxlength="30" autocomplete="off" value="BOOKMAKER" required>
+                                <span>Bookmaker</span>
+                            </label>
+                            <label class="user-type-item">
+                                <input type="radio" name="userType" maxlength="30" autocomplete="off" value="ADMIN" required>
+                                <span>Admin</span>
+                            </label>
+                        </div>
+                    </label>
+                    <label for="">
+                        <span>Password</span>
+                        <input type="password" name="password" id="signUpUserPassword" autocomplete="off" required>
+                        <p class="error-msg hidden-msg" id="incorrectSignUpPasswordMsg">Password must contain letters and(or) numbers. Valid password length: 4 to 30 characters.</p>
+                    </label>
+                    <label for="">
+                        <span>Confirm password</span>
+                        <input type="password" name="confirmPassword" id="signUpConfirmUserPassword" autocomplete="off" required>
+                        <p class="error-msg hidden-msg" id="incorrectConfirmPasswordMsg">Passwords do not match.</p>
+                    </label>
+                </div>
+                <button id="signUpButton">Sign up</button>
+                
+                <span class="change-form">Already have an account?<a href="#" id="useSignInForm">Sign in</a></span>
+                <a href="#" id="closeSignUpForm" class="close-form-button"></a>
+            </form>
+        </div>
+        <div class="container">
+            <div class="content">
+                <div class="menu-buttons">
+                    <ul>
+                        <li><button id="showRacesButton">Races</button></li>
+                        <li><button id="makeABetButton">Make a bet</button></li>
+                    </ul>
+                </div>
+                <div class="races-content">
+                    <h2>Available races</h2>
+                    <table>
+                        <tr>
+                            <th>№</th>
+                            <th>Name</th>
+                            <th>Coefficient</th>
+                            <th>First place</th>
+                            <th>Second place</th>
+                            <th>Third place</th>
+                        </tr>
+                        <tbody id="racesTable">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bets-content hide">
+                    <div class="data-input">
+                        <form id="makeABetForm" class="data-input-form hide">
+                            <div class="data">
+                                <h2>Make a bet</h2>
+                                <label>
+                                    <span>Race number</span>
+                                    <input type="number" min="1" max="10000" value="1" name="raceNumberInput" maxlength="10" id="raceNumberInput" autocomplete="off" required>
+                                </label>
+                                <label>
+                                    <span>Bet type</span>
+                                    <select name="betType" id="selectBetType">
+                                        <option value="WIN">WIN</option>
+                                        <option value="SHOW">SHOW</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Horse number</span>
+                                    <input type="number" min="1" max="10000" value="1" name="horseNumberInput" maxlength="10" id="horseNumberInput" autocomplete="off" required>
+                                </label>
+                                <label>
+                                    <span>Bet amount</span>
+                                    <input type="number" min="10" max="10000" value="10" name="betAmountInput" maxlength="10" id="betAmountInput" autocomplete="off" required>
+                                </label>
+                                <p class="error-msg hidden-msg" id="incorrectBetDataMsg">Incorrect input! Only integer numbers are allowed. Example: 12345.</p>
+                            </div>
+                            <button id="makeABetFormButton">Make a bet</button>
+                        </form>
+                        <div class="should-authorized">
+                            <h2>You should authorized to make a bet.</h2>
+                        </div>
+                    </div>
+                    <div class="data-output hide">
+                        <h2>Recent bets</h2>
+                        <table>
+                            <tr>
+                                <th>Bet №</th>
+                                <th>Race number</th>
+                                <th>Bet type</th>
+                                <th>Horse number</th>
+                                <th>Bet amount</th>
+                            </tr>
+                            <tbody id="betsTable">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="msgBox" class="msg-box hidden">
+            <h2 id="msgText"></h2>
+            <div class="closeInfo">
+                <button id="closeMsgBox">Close</button>
+            </div>
+        </div>
+        <form id="addMoneyForm" class="add-money-form hidden">
+            <h3 id="msgText">Adding money</h3>
+            <label>
+                <span>Money amount</span>
+                <input type="number" min="1" max="10000" value="10" name="addMoneyInput" maxlength="10" id="addMoneyInput" autocomplete="off" required>    
+            </label>
+            <p class="error-msg hidden-msg" id="incorrectAddMoneyMsg">Incorrect input! Only integer numbers are allowed. Example: 1234.</p>
+            <div>
+                <button>Add money</button>
+            </div>
+            <a href="#" id="closeAddMoneyForm"></a>
+            
+        </form>
+        <div class="loader hidden" id="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="author">
+                <span>&copy Alexander Eremich</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

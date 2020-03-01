@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HORSE RACES</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/bookmaker.js" defer></script>
+
+</head>
+<body class="bookmaker-body">
+    <header>
+        <div class="container">
+            <h1>Horse races</h1>
+            <div class="profile">
+                <div class="user-profile">
+                    <div class="user-profile-options">
+                        <div>
+                            <i class="icon-user"></i>
+                            <span id="profile-username">Bookmaker</span>
+                        </div>
+                        <ul class="profile-options-menu">
+                            <li><a href="#" id="setWinAmountProfileOption">Set win amount</a></li>
+                            <li><a href="#" id="showRacesProfileOption">Show bets</a></li>
+                            <li><a href="#" id="logOutProfileOption">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="content">
+                <div class="menu-buttons">
+                    <ul>
+                        <li><button id="showBetsButton">Bets</button></li>
+                        <li><button id="setWinAmountButton">Set win amount</button></li>
+                    </ul>
+                </div>
+                <div class="races-content">
+                    <h2>Actual bets</h2>
+                    <table>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer ID</th>
+                            <th>Race number</th>
+                            <th>Bet type</th>
+                            <th>Horse number</th>
+                            <th>Bet amount</th>
+                        </tr>
+                        <tbody id="betsTable">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="set-win-amount-content hide">
+                    <div class="data-input">
+                        <form id="setWinAmountForm" class="data-input-form">
+                            <div class="data">
+                                <h2>Set win amount</h2>
+                                <label>
+                                    <span>Bet ID</span>
+                                    <input type="number" min="1" max="10000" value="1" name="betIdInput" maxlength="10" id="betIdInput" autocomplete="off" required>
+                                </label>
+                                
+                                <p class="error-msg hidden-msg" id="incorrectBetDataMsg">Incorrect input! Only integer numbers are allowed. Example: 12345.</p>
+                            </div>
+                            <button>Set win amount</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="msgBox" class="msg-box hidden">
+            <h3 id="msgText"></h3>
+            <div class="closeInfo">
+                <button id="closeMsgBox">Close</button>
+            </div>
+        </div>
+        <div class="loader hidden" id="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="author">
+                <span>&copy Alexander Eremich</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

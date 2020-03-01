@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HORSE RACES</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/admin.js" defer></script>
+
+</head>
+<body class="administrator-body">
+    <header>
+        <div class="container">
+            <h1>Horse races</h1>
+            <div class="profile">
+                <div class="user-profile">
+                    <div class="user-profile-options">
+                        <div>
+                            <i class="icon-user"></i>
+                            <span id="profile-username">Admin</span>
+                        </div>
+                        <ul class="profile-options-menu">
+                            <li><a href="#" id="determineTheWinnerProfileOption">Determine the winner</a></li>
+                            <li><a href="#" id="showRacesProfileOption">Show races</a></li>
+                            <li><a href="#" id="logOutProfileOption">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="content">
+                <div class="menu-buttons">
+                    <ul>
+                        <li><button id="showRacesButton">Races</button></li>
+                        <li><button id="determineTheWinnerButton">Determine the winner</button></li>
+                    </ul>
+                </div>
+                <div class="races-content">
+                    <h2>Races</h2>
+                    <div class="menu-buttons">
+                        <ul>
+                            <li><button id="addRaceButton">Add race</button></li>
+                            <li><button id="editRaceButton">Edit race</button></li>
+                            <li><button id="deleteRaceButton">Delete race</button></li>
+                        </ul>
+                    </div>
+                    <form id="addRaceForm" class="data-input-form hide">
+                        <div class="data">
+                            <h2>Add new race</h2>
+                            <label>
+                                <span>Race name</span>
+                                <input type="text" name="raceNameInput" maxlength="20" id="raceNameInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectAddRaceNameMsg">Race name must contain letters of the Latin or Russian alphabet only. Allowed length: 2 to 20 characters. Name must not begin with a number.</p>
+                            <label>
+                                <span>Coefficient</span>
+                                <input type="number" min="0" max="20" value="1.0" step="0.01" name="raceCoefficientInput" maxlength="10" id="raceCoefficientInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectAddRaceCoefficientMsg">Incorrect input! Only decimal numbers are allowed. Example: 1.2</p>
+                        </div>
+                        <button>Add new race</button>
+                    </form>
+                    <form id="editRaceForm" class="data-input-form hide">
+                        <div class="data">
+                            <h2>Edit exsisted race</h2>
+                            <label>
+                                <span>Race number</span>
+                                <input type="number" min="1" max="10000" value="1" name="raceNumberInput" maxlength="10" id="editRaceNumberInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectEditRaceNumberMsg">Incorrect input! Only integer numbers are allowed. Example: 1234.</p>
+                            <label>
+                                <span>New race name</span>
+                                <input type="text" name="raceNameInput" maxlength="20" id="editRaceNameInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectNewRaceNameMsg">Race name must contain letters of the Latin or Russian alphabet only. Allowed length: 2 to 20 characters. Name must not begin with a number.</p>
+                            <label>
+                                <span> New coefficient</span>
+                                <input type="number" min="0" max="20" value="1.0" step="0.01" name="raceCoefficientInput" maxlength="10" id="editRaceCoefficientInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectNewRaceCoefficientMsg">Incorrect input! Only decimal numbers are allowed. Example: 1.2</p>
+                            <label>
+                                <span>New 1st winner number</span>
+                                <input type="number" min="1" max="10000" value="1" name="firstNumberInput" maxlength="10" id="editFirstNumberInput" autocomplete="off" required>
+                            </label>
+                            <label>
+                                <span>New 2nd winner number</span>
+                                <input type="number" min="1" max="10000" value="2" name="secondNumberInput" maxlength="10" id="editSecondNumberInput" autocomplete="off" required>
+                            </label>
+                            <label>
+                                <span>New 3rd winner number</span>
+                                <input type="number" min="1" max="10000" value="3" name="thirdNumberInput" maxlength="10" id="editThirdNumberInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectNewRaceDataMsg">Incorrect input! Only integer numbers are allowed. Example: 1234.</p>
+                        </div>
+                        <button>Edit race</button>
+                    </form>
+                    <form id="deleteRaceForm" class="data-input-form hide">
+                        <div class="data">
+                            <h2>Delete race</h2>
+                            <label>
+                                <span>Race number</span>
+                                <input type="number" min="1" max="10000" value="1" name="raceNumberInput" maxlength="10" id="deleteRaceNumberInput" autocomplete="off" required>
+                            </label>
+                            <p class="error-msg hidden-msg" id="incorrectDeleteRaceMsg">Incorrect input! Only integer numbers are allowed. Example: 1234.</p>
+                        </div>
+                        <button>Delete race</button>
+                    </form>
+                    <table>
+                        <tr>
+                            <th>№</th>
+                            <th>Name</th>
+                            <th>Coefficient</th>
+                            <th>First place</th>
+                            <th>Second place</th>
+                            <th>Third place</th>
+                        </tr>
+                        <tbody id="racesTable">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="admin-content hide">
+                    <div class="data-input">
+                        <form id="determineTheWinnerForm" class="data-input-form">
+                            <div class="data">
+                                <h2>Determine the winner</h2>
+                                <label>
+                                    <span>Race number</span>
+                                    <input type="number" min="1" max="10000" value="1" name="raceNumberInput" maxlength="10" id="raceNumberInput" autocomplete="off" required>
+                                </label>
+                                <label>
+                                    <span>1st horse-winner number</span>
+                                    <input type="number" min="1" max="10000" value="1" name="firstNumberInput" maxlength="10" id="firstNumberInput" autocomplete="off" required>
+                                </label>
+                                <label>
+                                    <span>2nd horse-winner number</span>
+                                    <input type="number" min="1" max="10000" value="2" name="secondNumberInput" maxlength="10" id="secondNumberInput" autocomplete="off" required>
+                                </label>
+                                <label>
+                                    <span>3rd horse-winner number</span>
+                                    <input type="number" min="1" max="10000" value="3" name="thirdNumberInput" maxlength="10" id="thirdNumberInput" autocomplete="off" required>
+                                </label>
+                                <p class="error-msg hidden-msg" id="incorrectWinnersDataMsg">Incorrect input! Only integer numbers are allowed. Example: 1234.</p>
+                            </div>
+                            <button id="makeABetButton">Set winners</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="msgBox" class="msg-box hidden">
+            <h3 id="msgText"></h3>
+            <div class="closeInfo">
+                <button id="closeMsgBox">Close</button>
+            </div>
+        </div>
+        <div class="loader hidden" id="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="author">
+                <span>&copy Alexander Eremich</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
